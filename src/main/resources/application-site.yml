@@ -1,0 +1,23 @@
+site:
+  author-name: soohoonlee
+  author-email: soohoon.lee1982@gmail.com
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "site-local"
+
+site:
+  author-name: soohoonlee-local
+  author-email: soohoon.lee1982.local@gmail.com
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "site-dev"
+
+site:
+  author-name: soohoonlee-dev
+  author-email: soohoon.lee1982.dev@gmail.com
