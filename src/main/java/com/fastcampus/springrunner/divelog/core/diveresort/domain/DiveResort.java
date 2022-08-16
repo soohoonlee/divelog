@@ -54,6 +54,17 @@ public class DiveResort {
 		return diveResort;
 	}
 
+	public void update(String name, String ownerName, String contactNumber, String address, String description) {
+		validateDiveResortArguments(name, ownerName, contactNumber, address, description);
+
+		this.name = name;
+		this.ownerName = ownerName;
+		this.contactNumber = contactNumber;
+		this.address = address;
+		this.description = description;
+		this.lastModifiedDateTime = LocalDateTime.now();
+	}
+
 	private static void validateDiveResortArguments(String name, String ownerName, String contactNumber, String address, String description) {
 		Assert.hasText(name, "name 은 필수 입력값 입니다.");
 		Assert.hasText(ownerName, "ownerName 은 필수 입력값 입니다.");

@@ -8,7 +8,7 @@ public interface DiveResortRepository {
 	List<DiveResort> findByName(String name);
 	List<DiveResort> findByOwnerName(String ownerName);
 	Optional<DiveResort> findByContactNumber(String contactNumber);
-	Optional<DiveResort> findById(Long id);
+	Optional<DiveResort> findById(Long diveResortId);
 	DiveResort save(DiveResort diveResort);
 	void delete(DiveResort diveResort);
 	void deleteAll();
