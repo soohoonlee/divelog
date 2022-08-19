@@ -1,11 +1,15 @@
 package com.fastcampus.springrunner.divelog.web.diveresort;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.fastcampus.springrunner.divelog.core.diveresort.application.DiveResortEditor;
 import com.fastcampus.springrunner.divelog.core.diveresort.application.DiveResortFinder;
 import com.fastcampus.springrunner.divelog.core.diveresort.application.dto.DiveResortDto;
+import com.fastcampus.springrunner.divelog.core.diveresort.domain.DiveResortNotFoundException;
 import com.fastcampus.springrunner.divelog.web.diveresort.dto.DiveResortRegisterRequest;
 import com.fastcampus.springrunner.divelog.web.diveresort.dto.DiveResortUpdateRequest;
 
@@ -15,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,5 +71,13 @@ public class DiveResortRestController {
 	public ResponseEntity<Void> delete(@PathVariable("diveResortId") Long diveResortId) {
 		diveResortEditor.delete(diveResortId);
 		return ResponseEntity.noContent().build();
+	}
+
+	@ExceptionHandler(DiveResortNotFoundException.class)
+	public ResponseEntity<?> handleDiveResortNotFoundException(DiveResortNotFoundException notFoundException) {
+		Map<String, Object> errorMap = new HashMap<>();
+		errorMap.put("timeStamp", LocalDateTime.now());
+		errorMap.put("message", notFoundException.getMessage());
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMap);
 	}
 }
