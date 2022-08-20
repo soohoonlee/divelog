@@ -1,0 +1,40 @@
+= 다이브로그(DiveLog) 애플리케이션
+이수훈, <jjinimania@gmail.com>
+v0.0.1, 2022-08-20
+// documentation setup
+:author: 이수훈
+:email: jjinimania@gmail.com
+:doctype: book
+:icons: font
+:source-highlighter: coderay
+:toc: left
+:toc-title: 목차
+:toclevels: 3
+:sectlinks:
+:sectnums:
+//placeholder
+
+== 공통
+DiveLog 애플리케이션 API 문서입니다.
+
+|====
+|담당 | 이름 | 이메일
+
+|개발 | 이수훈 | jjinimania@gmail.com
+|====
+
+[[dive-resort]]
+== 다이브리조트(DiveResort)
+
+[[dive-resorts-get-all]]
+=== 다이브리조트 조회
+
+[discrete]
+==== 다이브리조트 조회요청
+include::{snippets}/dive-resorts-get-list/http-request.adoc[]
+include::{snippets}/dive-resorts-get-list/curl-request.adoc[]
+
+[discrete]
+==== 다이브리조트 조회응답
+include::{snippets}/dive-resorts-get-list/http-response.adoc[]
+include::{snippets}/dive-resorts-get-list/response-fields.adoc[]
