@@ -7,21 +7,16 @@ import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fastcampus.springrunner.divelog.core.common.AbstractEntity;
 import com.fastcampus.springrunner.divelog.core.diveresort.domain.DivePoint;
 import lombok.Getter;
 
 @Getter
 @Entity
-public class DiveLog {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class DiveLog extends AbstractEntity {
 	@JoinColumn(name = "dive_point_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private DivePoint divePoint;
@@ -59,7 +54,7 @@ public class DiveLog {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, divePoint, diveDate, entryTime, exitTime);
+		return Objects.hash(divePoint, diveDate, entryTime, exitTime);
 	}
 
 	public void update(LocalDate diveDate, LocalTime entryTime, LocalTime exitTime, String weather, String buddyName, String note) {

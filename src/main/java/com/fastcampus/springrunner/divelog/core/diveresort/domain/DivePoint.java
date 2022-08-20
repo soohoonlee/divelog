@@ -1,25 +1,21 @@
 package com.fastcampus.springrunner.divelog.core.diveresort.domain;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fastcampus.springrunner.divelog.core.common.AbstractEntity;
 import lombok.Getter;
 
 import org.springframework.util.Assert;
 
 @Getter
 @Entity
-public class DivePoint {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class DivePoint extends AbstractEntity {
 	@JoinColumn(name = "dive_resort_id")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private DiveResort diveResort;
@@ -57,5 +53,19 @@ public class DivePoint {
 		Assert.hasText(name, "name 은 필수 입력값 입니다.");
 		Assert.hasText(depth, "depth 는 필수 입력값 입니다.");
 		Assert.hasText(description, "description 은 필수 입력값 입니다.");
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+		DivePoint divePoint = (DivePoint) o;
+		return Objects.equals(diveResort, divePoint.diveResort) && Objects.equals(name, divePoint.name) && Objects.equals(depth, divePoint.depth) && Objects.equals(description, divePoint.description) && Objects.equals(createdDateTime, divePoint.createdDateTime) && Objects.equals(lastModifiedDateTime, divePoint.lastModifiedDateTime);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode(), diveResort, name, depth, description, createdDateTime, lastModifiedDateTime);
 	}
 }

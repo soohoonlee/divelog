@@ -4,20 +4,15 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
+import com.fastcampus.springrunner.divelog.core.common.AbstractEntity;
 import lombok.Getter;
 
 import org.springframework.util.Assert;
 
 @Getter
 @Entity
-public class DiveResort {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class DiveResort extends AbstractEntity {
 	private String name;
 	private String ownerName;
 	private String contactNumber;
@@ -31,12 +26,12 @@ public class DiveResort {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		DiveResort that = (DiveResort) o;
-		return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(ownerName, that.ownerName) && Objects.equals(contactNumber, that.contactNumber) && Objects.equals(address, that.address) && Objects.equals(description, that.description) && Objects.equals(createdDateTime, that.createdDateTime) && Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime);
+		return Objects.equals(name, that.name) && Objects.equals(ownerName, that.ownerName) && Objects.equals(contactNumber, that.contactNumber) && Objects.equals(address, that.address) && Objects.equals(description, that.description) && Objects.equals(createdDateTime, that.createdDateTime) && Objects.equals(lastModifiedDateTime, that.lastModifiedDateTime);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, ownerName, contactNumber, address, description, createdDateTime, lastModifiedDateTime);
+		return Objects.hash(name, ownerName, contactNumber, address, description, createdDateTime, lastModifiedDateTime);
 	}
 
 	public static DiveResort create(String name, String ownerName, String contactNumber, String address, String description) {
