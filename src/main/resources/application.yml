@@ -20,3 +20,9 @@ spring:
 #    static-path-pattern: /resources/**
   messages:
     basename: classpath:/messages
+#logging:
+#  file:
+#    name: app.log
+#    path: logs
+#  level:
+#    '[org.springframework.web]': debug
